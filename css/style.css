@@ -1,0 +1,181 @@
+/* Basic, clean, dark layout. Easy to restyle later. */
+
+:root{
+    --bg: #0b0c10;
+    --bg2: #10121a;
+    --card: rgba(255,255,255,0.06);
+    --text: rgba(255,255,255,0.92);
+    --muted: rgba(255,255,255,0.65);
+    --border: rgba(255,255,255,0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1200px 800px at 20% -10%, #1a1f3a 0%, transparent 55%),
+    radial-gradient(900px 600px at 80% 0%, #2a1431 0%, transparent 55%),
+    var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+}
+
+a { color: inherit; }
+
+.container {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(11,12,16,0.65);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    gap: 16px;
+}
+
+.logo {
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--muted);
+}
+.nav a:hover { color: var(--text); }
+
+.hero {
+    padding: 90px 0 60px;
+}
+.hero-inner h1 {
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1.05;
+    margin: 10px 0 12px;
+    letter-spacing: 0.04em;
+}
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+}
+.lead { color: var(--muted); font-size: 18px; max-width: 60ch; }
+
+.cta-row { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text);
+    background: transparent;
+}
+.btn:hover { border-color: rgba(255,255,255,0.25); }
+
+.btn.primary {
+    background: rgba(255,255,255,0.10);
+}
+
+.section { padding: 60px 0; }
+.section.alt { background: rgba(255,255,255,0.03); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.section-head { margin-bottom: 18px; }
+.section-head h2 { margin: 0 0 6px; font-size: 28px; }
+.section-head p { margin: 0; color: var(--muted); max-width: 70ch; }
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+@media (max-width: 860px) {
+    .grid-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.embed { margin-top: 10px; }
+.placeholder {
+    border: 1px dashed rgba(255,255,255,0.22);
+    border-radius: 14px;
+    padding: 24px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.link-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.text-link { color: var(--muted); }
+.text-link:hover { color: var(--text); }
+
+.shows {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.show {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 90px;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+.show:last-child { border-bottom: 0; }
+
+.date { color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticket {
+    justify-self: end;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    border-radius: 999px;
+}
+.ticket:hover { border-color: rgba(255,255,255,0.25); }
+
+@media (max-width: 680px) {
+    .show { grid-template-columns: 1fr; }
+    .ticket { justify-self: start; }
+}
+
+.bullets { margin: 10px 0 0; padding-left: 18px; }
+.small { font-size: 14px; }
+.muted { color: var(--muted); }
+
+.site-footer {
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+}
+.footer-inner { display: flex; justify-content: center; }
