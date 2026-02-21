@@ -34,6 +34,7 @@
         </div>
     </section>
 
+    <div class="page">
     <!-- MUSIC -->
     <section id="music" class="section">
         <div class="container">
@@ -111,34 +112,34 @@
     <!-- GIGS -->
     <section id="gigs" class="section">
         <div class="container">
-            <div class="section-head">
-                <h2>Upcoming Gigs</h2>
-            </div>
-
-            <ul class="gigs">
-                <li class="show">
+            <ul id="all-gigs" hidden>
+                <li class="show" data-date="2026-03-20">
                     <span class="date">2026-03-20</span>
                     <span class="venue">CERN Restaurant 1</span>
                     <span class="city">Meyrin, CH</span>
                 </li>
-                <li class="show">
+                <li class="show" data-date="2026-03-26">
                     <span class="date">2026-03-26</span>
                     <span class="venue">La Jonquille</span>
                     <span class="city">Geneva, CH</span>
                 </li>
-            </ul>
-
-            <div class="section-head" style="margin-top: 2em;">
-                <h2>Past Gigs</h2>
-            </div>
-
-            <ul class="gigs">
-                <li class="show">
+                <li class="show" data-date="2025-12-13">
                     <span class="date">2025-12-13</span>
                     <span class="venue">Bar L'Échappée Belle</span>
                     <span class="city">Grilly, F</span>
                 </li>
             </ul>
+
+            <div class="section-head">
+                <h2>Upcoming Gigs</h2>
+            </div>
+            <ul id="upcoming-gigs" class="gigs"></ul>
+            <p id="no-upcoming" class="muted" hidden>No upcoming gigs — check back soon!</p>
+
+            <div class="section-head" style="margin-top: 2em;">
+                <h2>Past Gigs</h2>
+            </div>
+            <ul id="past-gigs" class="gigs"></ul>
         </div>
     </section>
 
@@ -161,6 +162,8 @@
             </div>
         </div>
     </section>
+
+    </div><!-- .page -->
 </main>
 
 <footer class="site-footer">
@@ -171,6 +174,27 @@
 
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function() {
+        var today = new Date().toISOString().slice(0, 10);
+        var gigs = Array.from(document.querySelectorAll("#all-gigs .show"));
+        var upcoming = document.getElementById("upcoming-gigs");
+        var past = document.getElementById("past-gigs");
+
+        gigs.sort(function(a, b) { return a.dataset.date.localeCompare(b.dataset.date); });
+
+        gigs.forEach(function(gig) {
+            if (gig.dataset.date >= today) {
+                upcoming.appendChild(gig);
+            } else {
+                past.appendChild(gig);
+            }
+        });
+
+        if (!upcoming.children.length) {
+            document.getElementById("no-upcoming").hidden = false;
+        }
+    })();
 </script>
 </body>
 </html>
